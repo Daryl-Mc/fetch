@@ -1,9 +1,9 @@
-let number = 1;
+let dexNumber = 387;
 const pokeImg = document.querySelector("#Pokemon");
 const addBtn = document.querySelector("#addBtn");
 
 const fetchPromise = fetch( 
-    "https://pokeapi.co/api/v2/pokemon/" + number, // using a variable to represent the Pokedex number
+    "https://pokeapi.co/api/v2/pokemon/" + dexNumber, // using a variable to represent the Pokedex dexNumber
 );
 // Make sure to use pokemon and not pokemon-species
 
@@ -12,24 +12,28 @@ fetchPromise.then((response) => response.json())
 .then((data) => { 
     console.log(data);
     pokeImg.src = data.sprites.front_default;
-    console.log(data.sprites);
+    //console.log(data.sprites);
 })
 .catch((err) => { // Only happens if there is a network error.
     console.log("NO PKMN");
 })
 
-function newPokemon(){
-    number ++
+function mathHandler(button){ 
+// will handle whether the dexNumber goes up or down depending on its parameters.
+}
+
+function newPokemon(){ 
+    dexNumber++;
     return fetch(
-        "https://pokeapi.co/api/v2/pokemon/" + number,
-        //start of a function to refetch a new Pokemon at another dex number.
+        "https://pokeapi.co/api/v2/pokemon/" + dexNumber,
+        //start of a function to refetch a new Pokemon at another dex dexNumber.
     )
 }
 
 function imgUpdate(){
     newPokemon().then((response) => response.json())
     .then((data) => {
-        console.log(data);
+        //console.log(data);
         pokeImg.src = data.sprites.front_default;
     })  
 }
